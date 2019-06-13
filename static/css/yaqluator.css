@@ -1,0 +1,252 @@
+textarea {
+    min-width: 300px;
+}
+
+.panel-default .panel-heading {
+    background-image: none;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f6e6b4+0,ed9017+100;Yellow+3D+%231 */
+    background: #f6e6b4; /* Old browsers */
+    background: -moz-linear-gradient(top, #f6e6b4 0%, #ed9017 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f6e6b4), color-stop(100%,#ed9017)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #f6e6b4 0%,#ed9017 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #f6e6b4 0%,#ed9017 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #f6e6b4 0%,#ed9017 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #f6e6b4 0%,#ed9017 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6e6b4', endColorstr='#ed9017',GradientType=0 ); /* IE6-9 */
+
+}
+
+/*noinspection CssUnusedSymbol*/
+.combobox-container {
+    margin-bottom: 1em;
+    float: right;
+}
+
+/*noinspection CssUnusedSymbol*/
+.glyphicon-remove {
+    left: -7px;
+    top: -1px;
+}
+
+/*noinspection CssUnusedSymbol*/
+#autoCompleteSuggestions {
+    margin-bottom: 10px;
+}
+
+.jumbotron {
+    padding-bottom: 0 !important;
+}
+
+.page-header {
+    margin-top: 0;
+    padding-top: 0;
+    background-color: #EDEDED;
+    width: 100%;
+    text-align: center;
+}
+
+.file-input-container {
+    float: left;
+    margin-left: 1em;
+    margin-bottom: 1em;
+}
+
+.page-title {
+    margin-top: 1em;
+    text-align: center;
+}
+
+.div_container {
+    display: table;
+    width: 100%;
+}
+
+.div_row {
+    display: table-row;
+}
+
+.div_cell {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.or_text {
+    font-weight: bolder;
+    padding-right: 1em;
+    padding-left: 1em;
+    white-space: nowrap;
+}
+
+#file-input-table {
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.colored {
+    color: #ffaa48;
+}
+h2{
+    font-size: 28px;
+}
+
+
+h3, h4{
+    line-height: 0.7em;
+    font-size:16px;
+}
+
+.page-header {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f3f3f3+7,ededed+13,ffffff+92 */
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ffffff 0%, #f3f3f3 7%, #ededed 13%, #ffffff 92%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(7%,#f3f3f3), color-stop(13%,#ededed), color-stop(92%,#ffffff)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #ffffff 0%,#f3f3f3 7%,#ededed 13%,#ffffff 92%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #ffffff 0%,#f3f3f3 7%,#ededed 13%,#ffffff 92%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #ffffff 0%,#f3f3f3 7%,#ededed 13%,#ffffff 92%); /* IE10+ */
+    background: linear-gradient(to bottom,  #ffffff 0%,#f3f3f3 7%,#ededed 13%,#ffffff 92%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+}
+
+.container {
+    height: 100% !important;
+}
+
+#yamlInput{
+    width:100%;
+    height: 100%;
+    margin-top: -70px;
+}
+
+
+#result{
+    width:100%;
+    height: 100%;
+    margin-top: -30px;
+}
+
+html, body {
+    height: 100%;
+    margin:0;
+}
+
+#wrapper {
+    position: relative;
+    min-height: 100%;
+    vertical-align:bottom;
+    margin:0 auto;
+    height:100%;
+}
+#header {
+    width: 100%;
+    position:absolute;
+    left:0;
+    top:0;
+}
+#content {
+    margin:0 auto -40px;
+    min-height:100%;
+    height:100%;
+    width: 80%;
+}
+#inner-content {
+    margin-top: -154px;
+    padding-top: 154px;
+    min-height:100%;
+    height:100%;
+}
+#content-spacer-top,#header {
+    height:154px;
+}
+#divFooter {
+    width:100%;
+    text-align: center;
+    border-top: 1px solid #bebebe;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    position: absolute;
+}
+
+#divFooter{
+    height:20px;
+}
+
+.panel-default {
+    border-color: #ffaa48;
+}
+
+.dropdown-menu {
+    max-height: 80px;
+    overflow-y: auto;
+}
+
+.left-panel-container {
+    float: left;
+    width: 50%;
+    height: 100%;
+}
+
+.yaql-input-panel {
+    margin-right: 20px;
+}
+
+.yaql-input-container {
+    width: 100%;
+    padding-right: 135px;
+    margin-right: -135px;
+}
+
+.evaluate-button-container {
+    float: right;
+}
+
+.right-panel {
+    float: right;
+    width: 50%;
+    height: 100%;
+    margin-top: -60px;
+    padding-top: 60px;
+}
+
+.high-panel-body {
+    height: 100%;
+}
+
+.result-panel-container {
+    height: 100%;
+    padding-top: 30px;
+}
+
+#fileInput {
+    float: left;
+}
+
+.left-panel {
+    height: 100%;
+    margin-top: -190px;
+    padding-top: 190px;
+    margin-right: 20px;
+}
+
+.yaml-input-options {
+    margin-bottom: 5px;
+    vertical-align: top;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.example-dropdown-container {
+    float: right;
+    padding-right: 15px;
+}
+
+.yaml-input-row {
+    height: 100%;
+    padding-top: 70px;
+}
+
+.legacymode label{
+    font-weight: 400;
+}
