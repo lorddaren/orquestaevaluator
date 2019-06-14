@@ -1,2 +1,3 @@
-yaql==1.1.0
-pyyaml==3.11
+yaql==1.1.3
+pyyaml==5.1.1
+flask

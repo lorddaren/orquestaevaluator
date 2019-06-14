@@ -96,8 +96,7 @@ def format_exception(e):
     return exception_str
 
 @app.route('/')
-def hello_world(name=None):
-    #return 'Hello World!'
+def doit(name=None):
     return render_template('index.html', name=name)
 
 
