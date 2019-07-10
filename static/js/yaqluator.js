@@ -22,7 +22,7 @@ function setYaml(yaml) {
 
 function evaluate(obj) {
     var url = apiServerString + apiEvaluate;
-    $resultArea.val("");
+    $resultArea.html("");
     $.ajax({
         url: url,
         type: "POST",
@@ -32,7 +32,7 @@ function evaluate(obj) {
         success: function (result) {
             //alert(JSON.stringify(result));
             if (result.statusCode > 0) {
-                $resultArea.val(JSON.stringify(result.value, undefined, 4));
+                $resultArea.html(JSON.stringify(result.value, undefined, 4));
             } else {
                 if (result.error && result.error.indexOf("YAQL") > -1) {
                     $yaqlAlert.html(result.error);
