@@ -12,39 +12,20 @@ except:
     from ..utils.exceptions import YamlException, YaqlException
 
 
-def _evaluate(yaql_expression, yaml_data, legacy=False):
-    engine_options = {
-        'yaql.limitIterators': 100,
-        'yaql.convertSetsToLists': True,
-        'yaql.memoryQuota': 10000
-    }
-
-    if legacy:
-        factory = yaql.legacy.YaqlFactory()
-        context = yaql.legacy.create_context()
-        context['legacy'] = True
-    else:
-        factory = yaql.YaqlFactory()
-        context = yaql.create_context()
-
-    parser = factory.create(options=engine_options)
-    return parser(yaql_expression).evaluate(yaml_data, context)
-
-
-def evaluate(yaql_expression, yaml_string, legacy=False):
+def evaluate(expression, data):
     """
     Evaluate the given YAQL expression on the given YAML
-    :param str yaql_expression: the YAQL expression
-    :param str|dict yaml_string: the YAML/JSON (as a string or dict (json))
+    :param str expression: the YAQL expression
+    :param str|dict data: the YAML/JSON (as a string or dict (json))
     :return: the query result
     :rtype: str
     :raises YamlException: if the input YAML is invalid
-    :raises YaqlException: if the YAQL is melformed
+    :raises YaqlException: if the YAQL is malformed
     """
 
     # Parse YAML
     try:
-        loaded_yaml = yaml.load(yaml_string) if isinstance(yaml_string, str) else yaml_string
+        loaded_yaml = yaml.load(data) if isinstance(data, str) else data
     except yaml.parser.ParserError as pe:
         raise YamlException("Invalid YAML: " + str(pe))
     except Exception as e:
@@ -52,14 +33,20 @@ def evaluate(yaql_expression, yaml_string, legacy=False):
 
     # Evaluate YAQL expression against the YAML
     try:
-        res = _evaluate(yaql_expression, loaded_yaml, legacy)
-        if isinstance(res, types.GeneratorType):
-            res = list(res)
-        return res
+        # res = _evaluate(yaql_expression, loaded_yaml, legacy)
+        # if isinstance(res, types.GeneratorType):
+        #     res = list(res)
+        from orquesta.expressions.base import validate, evaluate
+        res = validate(expression)
+        if len(res['errors']) > 0:
+            raise Exception("Invalid Expression: {}".format('\n'.join(res['errors'])))
+        else:
+            res = evaluate(expression, loaded_yaml)
+        return {'evaluation': res, 'payload': loaded_yaml}
     except yaql.language.exceptions.YaqlParsingException as pe:
-        raise YaqlException("Invalid YAQL expression: " + str(pe))
+        raise YaqlException("Invalid expression: " + str(pe))
     except Exception as e:
-        raise YaqlException("Exception evaluating YAQL expression: " + str(e))
+        raise YaqlException("Exception evaluating expression: " + str(e))
 
 
 def _get_matched_values(partial_value, sub_value):

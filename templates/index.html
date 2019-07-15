@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>YAQLuator</title>
+  <title>Orquesta Evaluator</title>
 
   <!-- Custom fonts for this template-->
   <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,7 +36,7 @@
         <!-- Topbar -->
           <div class="row justify-content-center bg-white topbar mb-4 static-top shadow">
               <div class="col-md-6 text-center m-auto">
-                  <h1>YAQLuator</h1>
+                  <h1>Orquesta Evaluator</h1>
               </div>
           </div>
         <!-- End of Topbar -->
@@ -55,6 +55,16 @@
                             <div class="form-group">
                             <label for="result">results</label>
                                 <pre><code class="language-json" id="result"></code></pre>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="st2Host" class="col-md-4">Stackstorm Host</label>
+                                <div class="col-md-8" style="margin-bottom:10px"><input class="form-control" id="st2Host" rows="1"/></div>
+                                <label for="st2Key" class="col-md-4">Stackstorm API Key</label>
+                                <div class="col-md-8" style="margin-bottom:10px"><input type="password" class="form-control" id="st2Key" rows="1"/></div>
+                                <label for="st2Execution" class="col-md-4">Stackstorm Execution ID (fetch data results)</label>
+                                <div class="col-md-8" style="margin-bottom:10px"><input class="form-control" id="st2Execution" rows="1"/></div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
@@ -82,7 +92,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Alcatel Lucent Cloudband Python themed Hackathon session 2015</span>
+            <span>Inspired by YAQLuator by Alcatel Lucent Cloudband</span>
           </div>
         </div>
       </footer>

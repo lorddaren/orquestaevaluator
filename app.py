@@ -33,8 +33,23 @@ def handle_evaluate():
         return json_error_response("yaql_expression is missing")
     if not "yaml" in data:
         return json_error_response("yaml is missing")
-    legacy = str(data.get("legacy", False)).lower() == "true"
-    return invoke(yaqluator.evaluate, {"yaql_expression": data["yaql_expression"], "yaml_string": data["yaml"], "legacy": legacy})
+
+    if data['st2_host'] and data['st2_key'] and data['st2_execution']:
+        from st2client.client import Client
+        import json
+        try:
+            client = Client(api_url=data['st2_host'] + '/api/v1', api_key=data['st2_key'])
+            execution = client.liveactions.get_by_id(data['st2_execution'])
+            payload = execution.result
+        except Exception as e:
+            return json_error_response(str(e))
+    else:
+        payload = data['yaml']
+
+    return invoke(yaqluator.evaluate, {"expression": data["yaql_expression"],
+                                       "data": payload
+                                       }
+                  )
 
 
 @app.route("/api/autoComplete/", methods=['POST'])
@@ -101,4 +116,4 @@ def doit(name=None):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True, host='0.0.0.0')

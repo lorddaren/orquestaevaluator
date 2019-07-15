@@ -4,6 +4,9 @@ var $yaqlInput = $("#yaqlInput");
 var $resultArea = $("#result");
 var $yaqlAlert = $("#yaqlAlert");
 var $yamlAlert = $("#yamlAlert");
+var $st2Host = $("#st2Host");
+var $st2Key = $("#st2Key");
+var $st2Execution = $("#st2Execution");
 
 //api
 var apiServerString = "/api";
@@ -12,17 +15,36 @@ var autoComplete = apiServerString + "/autoComplete/";
 var evalReqObj = {
     "yaml": "",
     "yaql_expression": "",
+    "st2_host": "",
+    "st2_key": "",
+    "st2_execution": "",
     "legacy": false
 };
 
 
 function setYaml(yaml) {
-    $yamlInput.val(JSON.stringify(yaml, undefined, 4));
+        try {
+            let a = JSON.parse(JSON.stringify(yaml));
+            $("#yaqlAlert").css('display', 'none');
+            $("#yamlInput").val(JSON.stringify(a, null, 4));
+        }
+        catch (jsonerr) {
+            // Unable to parse JSON, maybe this is YAML?
+            try {
+                let a = jsyaml.safeLoad(yaml);
+                $("#yaqlAlert").css('display', 'none');
+                $("#yamlInput").val(jsyaml.safeDump(a));
+            }
+            catch (yamlerr) {
+                $yaqlAlert.html("Invalid JSON or YAML " + jsonerr + "\n" + yamlerr);
+                $("#yaqlAlert").css('display', 'block');
+            }
+        }
 }
 
 function evaluate(obj) {
     var url = apiServerString + apiEvaluate;
-    $resultArea.html("");
+    $resultArea.val("");
     $.ajax({
         url: url,
         type: "POST",
@@ -32,13 +54,10 @@ function evaluate(obj) {
         success: function (result) {
             //alert(JSON.stringify(result));
             if (result.statusCode > 0) {
-                $resultArea.html(JSON.stringify(result.value, undefined, 4));
+                $resultArea.val(JSON.stringify(result.value.evaluation, undefined, 4));
+                setYaml(result.value.payload);
             } else {
-                if (result.error && result.error.indexOf("YAQL") > -1) {
-                    $yaqlAlert.html(result.error);
-                    $("#yaqlAlert").css('display', 'block')
-                }
-                if (result.error && result.error.indexOf("YAML") > -1) {
+                if (result.error) {
                     $yaqlAlert.html(result.error);
                     $("#yaqlAlert").css('display', 'block')
                 }
@@ -91,6 +110,9 @@ function syntaxHighlight(json) {
 $( document ).ready(function() {
     $yamlInput = $("#yamlInput");
     $yaqlInput = $("#yaqlInput");
+    $st2Host = $("#st2Host");
+    $st2Key = $("#st2Key");
+    $st2Execution = $("#st2Execution");
     $resultArea = $("#result");
     $yaqlAlert = $("#yaqlAlert");
     $yamlAlert = $("#yamlAlert");
@@ -100,6 +122,9 @@ $( document ).ready(function() {
         $("#yaqlAlert").css('display', 'none')
         evalReqObj.yaml = $yamlInput.val();
         evalReqObj.yaql_expression = $yaqlInput.val();
+        evalReqObj.st2_host = $st2Host.val();
+        evalReqObj.st2_key = $st2Key.val();
+        evalReqObj.st2_execution = $st2Execution.val();
         evalReqObj.legacy = $("#legacy").prop('checked');
         evaluate(evalReqObj);
 
@@ -136,4 +161,16 @@ $( document ).ready(function() {
             return;
         }
     });
+
+    $st2Execution.keydown(function (event) {
+        if ($st2Execution.val().length > 0) {
+            $yamlInput.prop('disabled', true);
+        } else {
+            $yamlInput.prop('disabled', false);
+        }
+        $st2Execution.focus();
+        if (event.keyCode != 8 && event.keyCode != 32 && event.keyCode != 46 && event.keyCode < 48) {
+            return;
+        }
+    })
 });
