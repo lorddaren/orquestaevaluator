@@ -14,11 +14,12 @@
   <!-- Custom fonts for this template-->
   <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link href="/static/css/jquery.rainbowJSON.css" rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="/static/css/sb-admin-2.css" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/ostk.css">
-    <link href="/static/css/prism.css" rel="stylesheet" />
+  <link href="/static/css/prism.css" rel="stylesheet" />
 
 </head>
 
@@ -48,13 +49,13 @@
             <div class="row">
                 <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="yaqlInput">expression</label>
+                            <label for="yaqlInput">Expression</label>
                             <textarea class="form-control" id="yaqlInput" rows="2"></textarea>
                             <div class="alert alert-danger" id="yaqlAlert" role="alert" style="display: none"></div>
                         </div>
-                            <div class="form-group">
-                            <label for="result">results</label>
-                                <pre><code class="language-json" id="result"></code></pre>
+                        <div class="form-group">
+                            <label for="result">Results</label>
+                            <div id="result"></div>
                         </div>
                         <div class="form-group">
                             <div class="row">
@@ -114,6 +115,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="/static/js/sb-admin-2.js"></script>
+  <script src="/static/js/jquery.rainbowJSON.js"></script>
 
   <!-- yaqulator -->
   <script src="/static/js/js-yaml.js"></script>
@@ -121,6 +123,7 @@
 
   <!-- prism -->
   <script src="/static/js/prism.js"></script>
+
 
 </body>
 

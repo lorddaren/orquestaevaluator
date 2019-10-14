@@ -42,9 +42,13 @@ function setYaml(yaml) {
         }
 }
 
+function setResultArea(json) {
+    $resultArea.removeData();
+    $resultArea.rainbowJSON({json: JSON.stringify(json)})
+}
+
 function evaluate(obj) {
     var url = apiServerString + apiEvaluate;
-    $resultArea.val("");
     $.ajax({
         url: url,
         type: "POST",
@@ -54,7 +58,7 @@ function evaluate(obj) {
         success: function (result) {
             //alert(JSON.stringify(result));
             if (result.statusCode > 0) {
-                $resultArea.val(JSON.stringify(result.value.evaluation, undefined, 4));
+                setResultArea(result.value.evaluation);
                 setYaml(result.value.payload);
             } else {
                 if (result.error) {
@@ -117,6 +121,11 @@ $( document ).ready(function() {
     $yaqlAlert = $("#yaqlAlert");
     $yamlAlert = $("#yamlAlert");
 
+    $resultArea.rainbowJSON({
+        maxElements: 0,
+        maxDepth: 0,
+        json: '{}'
+    });
     //event handlers
     $("#evaluate").click(function () {
         $("#yaqlAlert").css('display', 'none')
@@ -129,7 +138,6 @@ $( document ).ready(function() {
         evaluate(evalReqObj);
 
     });
-
     $("#reformat").click(function () {
         let error = '';
         try {
@@ -167,10 +175,6 @@ $( document ).ready(function() {
             $yamlInput.prop('disabled', true);
         } else {
             $yamlInput.prop('disabled', false);
-        }
-        $st2Execution.focus();
-        if (event.keyCode != 8 && event.keyCode != 32 && event.keyCode != 46 && event.keyCode < 48) {
-            return;
         }
     })
 });
