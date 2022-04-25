@@ -38,6 +38,10 @@ def evaluate(expression, data):
         # if isinstance(res, types.GeneratorType):
         #     res = list(res)
         from orquesta.expressions.base import validate, evaluate
+
+        # Replace \n with a space so we can have easier-to-read expressions
+        expression = expression.replace("\n", " ")
+
         res = validate(expression)
         if len(res['errors']) > 0:
             raise Exception("Invalid Expression: {}".format('\n'.join(res['errors'])))
